@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getUser } from './redux/reducers/user'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import PostsContainer from './components/PostsContainer'
+import Header from './components/Header'
+import Register from './components/Register';
+import LandingPage from './components/LandingPage';
+import Profile from './components/Profile'
+import Post from './components/Post';
+
+
+class App extends Component{
+  componentDidMount() {
+    this.props.getUser()
+  }
+
+  render() {
+    return(
+      <div className="App">
+      <Router>
+        <Header></Header>
+        <Switch>
+          <Route path="/" component={LandingPage} exact/>
+          <Route path="/posts" component={PostsContainer}/>
+          <Route path="/post/:id" component={Post}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/profile" component={Profile}/>
+          
+        </Switch>
+      </Router>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default connect(null, {getUser})(App);
