@@ -9,6 +9,8 @@ function Post(props) {
             {post && <div>
                 <h1>{post.title}</h1>
                 <p>{post.username}</p>
+                <p>{post.time}</p>
+                <p>{post.date}</p>
                 <hr/>
                 <p>{post.content}</p> 
             </div>}
@@ -23,4 +25,4 @@ let mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps)(Post)
+export default connect(mapStateToProps)(Post) 

@@ -1,10 +1,11 @@
 .header{
+    /* background-color: 'blue'; */
     display: 'flex';
     justify-content: 'space-between';
     padding: 20;
-    align-items: 'center'
+    /* align-items: 'center' */
 }
-#logo {
+.logo {
     flex: 4;
     display: 'flex';
     justify-content: 'flex-start'

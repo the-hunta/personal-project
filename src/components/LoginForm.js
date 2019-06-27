@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 import { login } from '../redux/reducers/user'
 
@@ -22,13 +22,17 @@ class LoginForm extends Component {
         })
     }
 
-    handleSubmit = () => {
+    handleSubmit = async () => {
         let { email, password } = this.state
-        this.props.login({email, password})
+       await this.props.login({email, password})
+       this.props.history.push("/posts")
+
+        
 
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <div
@@ -55,17 +59,18 @@ class LoginForm extends Component {
                     value={this.state.password}
                     onChange={this.handleChange}/>
                 
-                <Link to="posts">
+                {/* <Link to="/posts"> */}
+
                 <button onClick={this.handleSubmit} 
                 style={{ width: '170px' }}
                 >
                     login
                 </button>
-                </Link>     
+                    
 
                 <div> 
                     <h5> Don't have an account? Register below</h5>
-                    <Link to='register'>  
+                    <Link to='/register'>  
                     <button> Register </button>
                     </Link>
 
@@ -78,4 +83,6 @@ class LoginForm extends Component {
 }
 
 
-export default connect(null, {login})(LoginForm) 
+
+
+export default withRouter(connect(null, {login})(LoginForm))

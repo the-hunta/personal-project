@@ -19,10 +19,11 @@ export default function(state = initalState, action) {
             return {...state, data: action.payload.data}
 
         case LOGIN_USER_FULFILLED:
+            console.log(action.payload.data)
             return {...state, data: action.payload.data}
         
         case LOGOUT_USER_FULFILLED:
-            return {...state, data: action.payload.data}
+            return {...state, data: null}
 
         default:
             return state;
